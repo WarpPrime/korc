@@ -31,7 +31,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	<title>KSP Optimal Rocket Calculator</title>
 	<style type="text/css">
 .tablink {
-  background-color: #91a9b3;
+  background-color: #4af;
   color: #fff;
   float: left;
   border: none;
@@ -39,13 +39,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   cursor: pointer;
   padding: 14px 16px;
   margin: 0px 0px 10px 0px;
-  border-radius: 20px;
+  border-radius: 0px 0px 10px 10px;
   font-size: 17px;
   width: 50%;
 }
 
 .tablink:hover {
-  background-color: #c0e0ed;
+  background-color: #7cf;
 }
 
 .strong {
@@ -562,7 +562,7 @@ function SettingsController($scope) {
 		<button class="tablink" onclick="openPage('calc_chunk', this)" id="defaultOpen">Calculator</button>
 		<button class="tablink" onclick="openPage('save_chunk', this)">Saved Rockets</button>
 
-		<div id="calc_chunk" class="tabcontent">
+		<div id="calc_chunk">
 			<div ng-controller="SettingsController">
 			
 				<form name="settings" class="row">
@@ -858,7 +858,7 @@ function SettingsController($scope) {
 			</div>
 		</div>
 
-		<div id="save_chunk" class="tabcontent">
+		<div id="save-chunk">
 			<h1>asdfasdfafasfd</h1>
 		</div>
 		
