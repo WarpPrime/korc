@@ -1,4 +1,3 @@
-<!doctype html>
 <html ng-app>
 <head>
 	<meta charset="UTF-8">
@@ -31,6 +30,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	-->
 	<title>KSP Optimal Rocket Calculator</title>
 	<style type="text/css">
+.tablink {
+  background-color: #4af;
+  color: #fff;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  margin: 0px 0px 10px 0px;
+  border-radius: 0px 0px 10px 10px;
+  font-size: 17px;
+  width: 50%;
+}
+
+.tablink:hover {
+  background-color: #7cf;
+}
 
 .strong {
 	font-weight: bold;
@@ -504,6 +520,26 @@ function SettingsController($scope) {
 }
 
 	</script>
+	<script type="text/javascript">
+			function openPage(pageName, elmnt) {
+				// Hide all elements with class="tabcontent" by default */
+				var i, tabcontent, tablinks;
+				tabcontent = document.getElementsByClassName("tabcontent");
+				for (i = 0; i < tabcontent.length; i++) {
+					tabcontent[i].style.display = "none";
+				}
+
+
+				// Show the specific tab content
+				document.getElementById(pageName).style.display = "block";
+				}
+
+				// Get the element with id="defaultOpen" and click on it
+				function openLoaded() {
+					document.getElementById("defaultOpen").click();
+				}
+
+	</script>
 	<datalist id="timeSuggestions">
 		<option value="10">10 Seconds</option>
 		<option value="30">30 Seconds</option>
@@ -517,304 +553,313 @@ function SettingsController($scope) {
 		<option value="1800">30 Minutes</option>
 	</datalist>
 </head>
-<body>
+<body onload="openLoaded()">
 	<div class="container">
 		<div class="page-header">
-			<h1>KSP Optimal Rocket Calculator <small>for Kerbal Space Program 1.2</small></h1>
+			<h1>KSP Optimal Rocket Calculator <small>for Kerbal Space Program 1.11</small></h1>
 		</div>
-		
-		<div ng-controller="SettingsController">
-		
-			<form name="settings" class="row">
-				<div class="col-md-6">
-					<div class="arguments form-horizontal">
-						<div class="form-group">
-							<label for="settingsOptimization" class="control-label col-sm-5">Optimize For</label>
-							<div class="col-sm-7">
-								<div ng-class="{'input-group': optimization == 'partCount'}">
-									<select name="optimization" id="settingsOptimization" class="form-control" ng-model="optimization" ng-change="onOptimizationChange()">
-										<option value="mass">Mass</option>
-										<option value="cost">Cost</option>
-										<option value="partCount">Part Count</option>
-									</select>
-									<span class="input-group-addon" ng-if="NEEDS_OPTIMIZATION2[optimization]"> then </span>
-									<select name="optimization2" id="settingsOptimization2" class="form-control" ng-model="optimization2"  ng-if="NEEDS_OPTIMIZATION2[optimization]">
-										<option value="mass">Mass</option>
-										<option value="cost">Cost</option>
-										<option value="deltaV">Delta-V</option>
-									</select>
+
+		<button class="tablink" onclick="openPage('calc_chunk', this)" id="defaultOpen">Calculator</button>
+		<button class="tablink" onclick="openPage('save_chunk', this)">Saved Rockets</button>
+
+		<div id="calc_chunk">
+			<div ng-controller="SettingsController">
+			
+				<form name="settings" class="row">
+					<div class="col-md-6">
+						<div class="arguments form-horizontal">
+							<div class="form-group">
+								<label for="settingsOptimization" class="control-label col-sm-5">Optimize For</label>
+								<div class="col-sm-7">
+									<div ng-class="{'input-group': optimization == 'partCount'}">
+										<select name="optimization" id="settingsOptimization" class="form-control" ng-model="optimization" ng-change="onOptimizationChange()">
+											<option value="mass">Mass</option>
+											<option value="cost">Cost</option>
+											<option value="partCount">Part Count</option>
+										</select>
+										<span class="input-group-addon" ng-if="NEEDS_OPTIMIZATION2[optimization]"> then </span>
+										<select name="optimization2" id="settingsOptimization2" class="form-control" ng-model="optimization2"  ng-if="NEEDS_OPTIMIZATION2[optimization]">
+											<option value="mass">Mass</option>
+											<option value="cost">Cost</option>
+											<option value="deltaV">Delta-V</option>
+										</select>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsPayload" class="control-label col-sm-5">Payload</label>
-							<div class="col-sm-7">
-								<div class="input-group" ng-class="{'has-error': !payload}">
-									<input type="number" name="payload" required="required" min="0" step="0.001" placeholder="0" id="settingsPayload" class="form-control" ng-model="payload"/>
-									<span class="input-group-addon mathml"><math><mi>t</mi></math></span>
+							
+							<div class="form-group">
+								<label for="settingsPayload" class="control-label col-sm-5">Payload</label>
+								<div class="col-sm-7">
+									<div class="input-group" ng-class="{'has-error': !payload}">
+										<input type="number" name="payload" required="required" min="0" step="0.001" placeholder="0" id="settingsPayload" class="form-control" ng-model="payload"/>
+										<span class="input-group-addon mathml"><math><mi>t</mi></math></span>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsDeltaV" class="control-label col-sm-5">Minimum Total Delta-V</label>
-							<div class="col-sm-7">
-								<div class="input-group" ng-class="{'has-error': !deltaV}">
-									<input type="number" name="deltaV" required="required" min="0" step="1" placeholder="0" id="settingsDeltaV" class="form-control" ng-model="deltaV"/>
-									<span class="input-group-addon mathml"><math><mi>m</mi><mo>/</mo><mi>s</mi></math></span>
+							
+							<div class="form-group">
+								<label for="settingsDeltaV" class="control-label col-sm-5">Minimum Total Delta-V</label>
+								<div class="col-sm-7">
+									<div class="input-group" ng-class="{'has-error': !deltaV}">
+										<input type="number" name="deltaV" required="required" min="0" step="1" placeholder="0" id="settingsDeltaV" class="form-control" ng-model="deltaV"/>
+										<span class="input-group-addon mathml"><math><mi>m</mi><mo>/</mo><mi>s</mi></math></span>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsPlanet" class="control-label col-sm-5">Local Gravity</label>
-							<div class="col-sm-7">
-								<div class="input-group">
-									<span class="input-group-addon"><select name="planet" id="settingsPlanet" class="form-control-minimal" ng-model="planet" ng-options="PLANET as PLANET.name for PLANET in PLANETS" ng-change="onPlanetChange()"></select></span>
-									<input type="number" name="gravity" min="0" step="0.001" id="settingsGravity" class="form-control" ng-model="gravity" ng-change="onGravityChange()"/>
-									<span class="input-group-addon mathml"><math><mi>m</mi><mo>/</mo><msup><mi>s</mi><mn>2</mn></msup></math></span>
+							
+							<div class="form-group">
+								<label for="settingsPlanet" class="control-label col-sm-5">Local Gravity</label>
+								<div class="col-sm-7">
+									<div class="input-group">
+										<span class="input-group-addon"><select name="planet" id="settingsPlanet" class="form-control-minimal" ng-model="planet" ng-options="PLANET as PLANET.name for PLANET in PLANETS" ng-change="onPlanetChange()"></select></span>
+										<input type="number" name="gravity" min="0" step="0.001" id="settingsGravity" class="form-control" ng-model="gravity" ng-change="onGravityChange()"/>
+										<span class="input-group-addon mathml"><math><mi>m</mi><mo>/</mo><msup><mi>s</mi><mn>2</mn></msup></math></span>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsMinTWR" class="control-label col-sm-5">Initial Thrust-to-Weight Ratio</label>
-							<div class="col-sm-7">
-								<div class="input-group">
-									<input type="number" name="minTWR" min="0" step="0.1" placeholder="0" id="settingsMinTWR" class="form-control" ng-model="minTWR"/>
-									<span class="input-group-addon"> to </span>
-									<input type="number" name="maxTWR" min="0" step="0.1" placeholder="Infinity" id="settingsMaxTWR" class="form-control" ng-model="maxTWR"/>
+							
+							<div class="form-group">
+								<label for="settingsMinTWR" class="control-label col-sm-5">Initial Thrust-to-Weight Ratio</label>
+								<div class="col-sm-7">
+									<div class="input-group">
+										<input type="number" name="minTWR" min="0" step="0.1" placeholder="0" id="settingsMinTWR" class="form-control" ng-model="minTWR"/>
+										<span class="input-group-addon"> to </span>
+										<input type="number" name="maxTWR" min="0" step="0.1" placeholder="Infinity" id="settingsMaxTWR" class="form-control" ng-model="maxTWR"/>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsMaxTime" class="control-label col-sm-5">Stage Burn Time</label>
-							<div class="col-sm-7">
-								<div class="input-group">
-									<input type="number" name="minTime" min="0" step="0.1" placeholder="0" list="timeSuggestions" id="settingsMinTime" class="form-control" ng-model="minTime"/>
-									<span class="input-group-addon"> to </span>
-									<input type="number" name="maxTime" min="0" step="0.1" placeholder="Infinity" list="timeSuggestions" id="settingsMaxTime" class="form-control" ng-model="maxTime"/>
-									<span class="input-group-addon mathml"><math><mi>s</mi></math></span>
+							
+							<div class="form-group">
+								<label for="settingsMaxTime" class="control-label col-sm-5">Stage Burn Time</label>
+								<div class="col-sm-7">
+									<div class="input-group">
+										<input type="number" name="minTime" min="0" step="0.1" placeholder="0" list="timeSuggestions" id="settingsMinTime" class="form-control" ng-model="minTime"/>
+										<span class="input-group-addon"> to </span>
+										<input type="number" name="maxTime" min="0" step="0.1" placeholder="Infinity" list="timeSuggestions" id="settingsMaxTime" class="form-control" ng-model="maxTime"/>
+										<span class="input-group-addon mathml"><math><mi>s</mi></math></span>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group" ng-hide="optimization == 'mass'">
-							<label for="settingsMaxMass" class="control-label col-sm-5">Maximum Total Mass</label>
-							<div class="col-sm-7">
-								<div class="input-group">
-									<input type="number" name="maxMass" min="{{payload}}" step="0.001" placeholder="Infinity" id="settingsMaxMass" class="form-control" ng-model="maxMass"/>
-									<span class="input-group-addon mathml"><math><mi>t</mi></math></span>
+							
+							<div class="form-group" ng-hide="optimization == 'mass'">
+								<label for="settingsMaxMass" class="control-label col-sm-5">Maximum Total Mass</label>
+								<div class="col-sm-7">
+									<div class="input-group">
+										<input type="number" name="maxMass" min="{{payload}}" step="0.001" placeholder="Infinity" id="settingsMaxMass" class="form-control" ng-model="maxMass"/>
+										<span class="input-group-addon mathml"><math><mi>t</mi></math></span>
+									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group" ng-hide="optimization == 'partCount'">
-							<label for="settingsMaxPartCount" class="control-label col-sm-5">Maximum Total Part Count</label>
-							<div class="col-sm-7">
-								<input type="number" name="maxPartCount" min="1" step="1" placeholder="Infinity" id="settingsMaxPartCount" class="form-control" ng-model="maxPartCount"/>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsMaxStages" class="control-label col-sm-5">Maximum # of Stages</label>
-							<div class="col-sm-7">
-								<input type="number" name="maxStages" min="1" step="1" placeholder="1" id="settingsMaxStages" class="form-control" ng-model="maxStages" ng-change="onMaxStagesChange()"/>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="settingsMaxStacks" class="control-label col-sm-5">Maximum # of Stacks</label>
-							<div class="col-sm-7">
-								<input type="number" name="maxStacks" min="1" step="1" max="50" placeholder="1" id="settingsMaxStacks" class="form-control" ng-model="maxStacks" ng-change="onMaxStacksChange()"/>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-sm-5">Staging Setup</label>
-							<div class="col-sm-7">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="cluster" id="settingsCluster" ng-model="cluster" ng-disabled="maxStacks <= 1"/>
-										Engine clustering
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="asparagus" id="settingsAsparagus" ng-model="asparagus" ng-disabled="maxStacks <= 1" ng-change="onAsparagusChange()"/>
-										Asparagus fuel routing
-										<a href="http://wiki.kerbalspaceprogram.com/wiki/Asparagus_staging" target="_blank" class="help">?</a>
-									</label>
+							
+							<div class="form-group" ng-hide="optimization == 'partCount'">
+								<label for="settingsMaxPartCount" class="control-label col-sm-5">Maximum Total Part Count</label>
+								<div class="col-sm-7">
+									<input type="number" name="maxPartCount" min="1" step="1" placeholder="Infinity" id="settingsMaxPartCount" class="form-control" ng-model="maxPartCount"/>
 								</div>
 							</div>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label col-sm-5">Options</label>
-							<div class="col-sm-7">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="atmosphere" id="settingsAtmosphere" ng-model="atmosphere"/>
-										Use engine's atmospheric stats
-									</label>
+							
+							<div class="form-group">
+								<label for="settingsMaxStages" class="control-label col-sm-5">Maximum # of Stages</label>
+								<div class="col-sm-7">
+									<input type="number" name="maxStages" min="1" step="1" placeholder="1" id="settingsMaxStages" class="form-control" ng-model="maxStages" ng-change="onMaxStagesChange()"/>
 								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="payloadDecoupler" id="settingsPayloadDecoupler" ng-model="payloadDecoupler"/>
-										Add decoupler between payload
-									</label>
+							</div>
+							
+							<div class="form-group">
+								<label for="settingsMaxStacks" class="control-label col-sm-5">Maximum # of Stacks</label>
+								<div class="col-sm-7">
+									<input type="number" name="maxStacks" min="1" step="1" max="50" placeholder="1" id="settingsMaxStacks" class="form-control" ng-model="maxStacks" ng-change="onMaxStacksChange()"/>
 								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="lastStageSingle" id="settingsLastStageSingle" ng-model="lastStageSingle"/>
-										Last stage must be a single stack
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="tankDiametersEqual" id="settingsTankDiametersEqual" ng-model="tankDiametersEqual" ng-change="onTankDiametersEqualChange()"/>
-										All tanks & stack decouplers in a stage must be the same diameter
-									</label>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-5">Staging Setup</label>
+								<div class="col-sm-7">
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="tankDiametersEqualEngineDiameter" id="settingsTankDiametersEqualEngineDiameter" ng-model="tankDiametersEqualEngineDiameter" ng-disabled="!tankDiametersEqual"/>
-											<span class="ellipsis">...</span> as the engines
+											<input type="checkbox" name="cluster" id="settingsCluster" ng-model="cluster" ng-disabled="maxStacks <= 1"/>
+											Engine clustering
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="asparagus" id="settingsAsparagus" ng-model="asparagus" ng-disabled="maxStacks <= 1" ng-change="onAsparagusChange()"/>
+											Asparagus fuel routing
+											<a href="http://wiki.kerbalspaceprogram.com/wiki/Asparagus_staging" target="_blank" class="help">?</a>
+										</label>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label col-sm-5">Options</label>
+								<div class="col-sm-7">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="atmosphere" id="settingsAtmosphere" ng-model="atmosphere"/>
+											Use engine's atmospheric stats
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="payloadDecoupler" id="settingsPayloadDecoupler" ng-model="payloadDecoupler"/>
+											Add decoupler between payload
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="lastStageSingle" id="settingsLastStageSingle" ng-model="lastStageSingle"/>
+											Last stage must be a single stack
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="tankDiametersEqual" id="settingsTankDiametersEqual" ng-model="tankDiametersEqual" ng-change="onTankDiametersEqualChange()"/>
+											All tanks & stack decouplers in a stage must be the same diameter
 										</label>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="tankDiametersGreaterThenEngineDiameter" id="settingsTankDiametersGreaterThenEngineDiameter" ng-model="tankDiametersGreaterThenEngineDiameter" ng-disabled="!tankDiametersEqual || !tankDiametersEqualEngineDiameter"/>
-												<span class="ellipsis">...</span> or larger
+												<input type="checkbox" name="tankDiametersEqualEngineDiameter" id="settingsTankDiametersEqualEngineDiameter" ng-model="tankDiametersEqualEngineDiameter" ng-disabled="!tankDiametersEqual"/>
+												<span class="ellipsis">...</span> as the engines
 											</label>
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" name="tankDiametersGreaterThenEngineDiameter" id="settingsTankDiametersGreaterThenEngineDiameter" ng-model="tankDiametersGreaterThenEngineDiameter" ng-disabled="!tankDiametersEqual || !tankDiametersEqualEngineDiameter"/>
+													<span class="ellipsis">...</span> or larger
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="gimbal" id="settingsGimbal" ng-model="gimbal"/>
+											Each stage must have a gimbaling engine
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="throttleable" id="settingsThrottleable" ng-model="throttleable"/>
+											Last stage must have a throttleable engine
+										</label>
+									</div>
+								</div>
+							</div>
+							
+							<div class="actions row">
+								<div class="col-sm-offset-5 col-sm-7">
+									<button class="btn btn-primary" ng-disabled="settings.$invalid" ng-click="search()">Search</button>
+									<p class="help-block warning" ng-if="!webworkersSupported">This browser does not support web workers, searching will be slow!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<label>Available Parts</label>
+						<div class="availableParts partPacks partList well">
+							<div class="partPack partListItem checkbox" ng-repeat="pack in packTree">
+								<input type="checkbox" ng-model="pack.enabled" ng-change="onPartListItemChange(pack)"/><span class="packName">{{pack.name}}</span>
+								<div class="partTypes partList">
+									<div class="partType partListItem" ng-repeat="type in pack.parts">
+										<input type="checkbox" ng-model="type.enabled" ng-change="onPartListItemChange(type, pack)"/><span>{{type.name}}</span>
+										<div class="partItems partList">
+											<div class="partItem partListItem" ng-repeat="part in type.parts">
+												<input type="checkbox" ng-model="part.enabled" ng-change="onPartListItemChange(part, type, pack)"/><span>{{part.name}}</span>
+											</div>
 										</div>
 									</div>
 								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="gimbal" id="settingsGimbal" ng-model="gimbal"/>
-										Each stage must have a gimbaling engine
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="throttleable" id="settingsThrottleable" ng-model="throttleable"/>
-										Last stage must have a throttleable engine
-									</label>
-								</div>
 							</div>
 						</div>
-						
-						<div class="actions row">
-							<div class="col-sm-offset-5 col-sm-7">
-								<button class="btn btn-primary" ng-disabled="settings.$invalid" ng-click="search()">Search</button>
-								<p class="help-block warning" ng-if="!webworkersSupported">This browser does not support web workers, searching will be slow!</p>
-							</div>
-						</div>
+					</div>
+				</form>
+			
+				<div class="donate">
+					<div class="alert alert-warning">
+						<h4>Find this tool useful? Like to see it continually supported?</h4>
+						<p>
+							I am a self-employed software developer who built this tool in my free time. 
+							Unfortunately, I can't work on stuff like this all the time as I have to make money to eat and live.
+							With your support, I can continue working on this and other great tools for Kerbal Space Program that everyone can benefit from!
+						</p>
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+							<input type="hidden" name="cmd" value="_s-xclick"/>
+							<input type="hidden" name="hosted_button_id" value="6E5RDXCCFK2KC"/>
+							<p class="donate-line">
+								Every little bit helps. So please, consider donating to my cause: 
+								<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" class="btn" border="0" name="submit" alt="Donate via PayPal" style="vertical-align:middle;"/>
+							</p>
+						</form>
+						<p>Thanks!</p>
+					</div>
+				</div>
+			
+				<div class="searchProgress alert alert-info text-center" ng-show="bestStagingsArgs">
+					<h2 ng-if="bestStagingsArgs.maxStages > 1">Found {{bestStagingsValid}} Valid Rocket Designs<small ng-if="bestStagingsInvalid"> (and {{bestStagingsCount}} Invalid)</small></h2>
+					<h2 ng-if="bestStagingsArgs.maxStages <= 1">Most Optimal Rocket Design Found!</h2>
+					<div class="actions pull-right">
+						<button class="btn btn-danger" ng-click="stop()" ng-hide="!searching || bestStagingsArgs.maxStages <= 1">Stop</button>
 					</div>
 				</div>
 				
-				<div class="col-md-6">
-					<label>Available Parts</label>
-					<div class="availableParts partPacks partList well">
-						<div class="partPack partListItem checkbox" ng-repeat="pack in packTree">
-							<input type="checkbox" ng-model="pack.enabled" ng-change="onPartListItemChange(pack)"/><span class="packName">{{pack.name}}</span>
-							<div class="partTypes partList">
-								<div class="partType partListItem" ng-repeat="type in pack.parts">
-									<input type="checkbox" ng-model="type.enabled" ng-change="onPartListItemChange(type, pack)"/><span>{{type.name}}</span>
-									<div class="partItems partList">
-										<div class="partItem partListItem" ng-repeat="part in type.parts">
-											<input type="checkbox" ng-model="part.enabled" ng-change="onPartListItemChange(part, type, pack)"/><span>{{part.name}}</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="searchResults">
+					<details class="panel panel-default" ng-repeat="staging in bestStagings" ng-open="$first">
+						<summary class="panel-heading">
+							<div class="attempt panel-heading-pill">Attempt #{{staging.attempt}}</div>
+							<div class="stages panel-heading-pill nav-pills">Stages: {{staging.stages.length-1}}</div>
+							<div class="partCount panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: {{staging.partCount}}</div>
+							<div class="cost panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'cost'}">Cost: {{staging.cost}}</div>
+							<div class="mass panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'mass'}">Mass: {{staging.mass.toFixed(3)}} <abbr title="Payload Fraction">({{(staging.payloadFraction * 100).toPrecision(3)}}%)</abbr></div>
+							<div class="deltaV panel-heading-pill nav-pills">Delta-V: {{Math.round(staging.deltaV)}}</div>
+							<div class="time panel-heading-pill nav-pills">Time: {{staging.time.toFixed(1)}}</div>
+						</summary>
+						<table class="panel-table table">
+							<thead>
+								<tr>
+									<th class="stage">Stage</th>
+									<th class="parts">Part</th>
+									<th class="stageMultiplier">x</th>
+									<th class="cost">Cost</th>
+									<th class="mass">Mass (<math><mi>t</mi></math>)</th>
+									<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
+									<th class="twr">TWR</th>
+									<th class="time">Time (<math><mi>s</mi></math>)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="stage in staging.stages | orderBy:'-stage'">
+									<td class="stage">
+										<div class="stageNumber">{{$index}}</div>
+										<small ng-if="stage.asparagus">Asparagus</small>
+									</td>
+									<td class="parts partList">
+										<ol>
+											<li class="decouplers" ng-repeat="part in stage.decouplers">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+											<li class="payload" ng-if="stage.payload > 0">Payload: {{stage.payload}}t</li>
+											<li class="others" ng-repeat="part in stage.others">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+											<li class="lfoTanks" ng-repeat="part in stage.lfoTanks">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+											<li class="branches" ng-repeat="part in stage.branches">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+											<li class="lfoEngines" ng-repeat="part in stage.lfoEngines">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+											<li class="boosters" ng-repeat="part in stage.boosters">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
+										</ol>
+									</td>
+									<td class="stageMultiplier"><span ng-if="stage.multiplier > 1">x{{stage.multiplier}}</span></td>
+									<td class="cost">{{stage.costStage}} / {{stage.costTotal}}</td>
+									<td class="mass">{{stage.massStage.toFixed(3)}} / {{stage.massTotal.toFixed(3)}}</td>
+									<td class="deltaV">{{Math.round(stage.deltaVStage)}} / {{Math.round(stage.deltaVTotal)}}</td>
+									<td class="twr">{{stage.twr.toFixed(2)}}</td>
+									<td class="time">{{stage.timeStage.toFixed(1)}} / {{stage.timeTotal.toFixed(1)}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</details>
 				</div>
-			</form>
-			
-			<div class="donate">
-				<div class="alert alert-warning">
-					<h4>Find this tool useful? Like to see it continually supported?</h4>
-					<p>
-						I am a self-employed software developer who built this tool in my free time. 
-						Unfortunately, I can't work on stuff like this all the time as I have to make money to eat and live.
-						With your support, I can continue working on this and other great tools for Kerbal Space Program that everyone can benefit from!
-					</p>
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-						<input type="hidden" name="cmd" value="_s-xclick"/>
-						<input type="hidden" name="hosted_button_id" value="6E5RDXCCFK2KC"/>
-						<p class="donate-line">
-							Every little bit helps. So please, consider donating to my cause: 
-							<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" class="btn" border="0" name="submit" alt="Donate via PayPal" style="vertical-align:middle;"/>
-						</p>
-					</form>
-					<p>Thanks!</p>
-				</div>
+				
 			</div>
-		
-			<div class="searchProgress alert alert-info text-center" ng-show="bestStagingsArgs">
-				<h2 ng-if="bestStagingsArgs.maxStages > 1">Found {{bestStagingsValid}} Valid Rocket Designs<small ng-if="bestStagingsInvalid"> (and {{bestStagingsCount}} Invalid)</small></h2>
-				<h2 ng-if="bestStagingsArgs.maxStages <= 1">Most Optimal Rocket Design Found!</h2>
-				<div class="actions pull-right">
-					<button class="btn btn-danger" ng-click="stop()" ng-hide="!searching || bestStagingsArgs.maxStages <= 1">Stop</button>
-				</div>
-			</div>
-			
-			<div class="searchResults">
-				<details class="panel panel-default" ng-repeat="staging in bestStagings" ng-open="$first">
-					<summary class="panel-heading">
-						<div class="attempt panel-heading-pill">Attempt #{{staging.attempt}}</div>
-						<div class="stages panel-heading-pill nav-pills">Stages: {{staging.stages.length-1}}</div>
-						<div class="partCount panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: {{staging.partCount}}</div>
-						<div class="cost panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'cost'}">Cost: {{staging.cost}}</div>
-						<div class="mass panel-heading-pill nav-pills" ng-class="{strong: staging.optimization == 'mass'}">Mass: {{staging.mass.toFixed(3)}} <abbr title="Payload Fraction">({{(staging.payloadFraction * 100).toPrecision(3)}}%)</abbr></div>
-						<div class="deltaV panel-heading-pill nav-pills">Delta-V: {{Math.round(staging.deltaV)}}</div>
-						<div class="time panel-heading-pill nav-pills">Time: {{staging.time.toFixed(1)}}</div>
-					</summary>
-					<table class="panel-table table">
-						<thead>
-							<tr>
-								<th class="stage">Stage</th>
-								<th class="parts">Part</th>
-								<th class="stageMultiplier">x</th>
-								<th class="cost">Cost</th>
-								<th class="mass">Mass (<math><mi>t</mi></math>)</th>
-								<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
-								<th class="twr">TWR</th>
-								<th class="time">Time (<math><mi>s</mi></math>)</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="stage in staging.stages | orderBy:'-stage'">
-								<td class="stage">
-									<div class="stageNumber">{{$index}}</div>
-									<small ng-if="stage.asparagus">Asparagus</small>
-								</td>
-								<td class="parts partList">
-									<ol>
-										<li class="decouplers" ng-repeat="part in stage.decouplers">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-										<li class="payload" ng-if="stage.payload > 0">Payload: {{stage.payload}}t</li>
-										<li class="others" ng-repeat="part in stage.others">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-										<li class="lfoTanks" ng-repeat="part in stage.lfoTanks">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-										<li class="branches" ng-repeat="part in stage.branches">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-										<li class="lfoEngines" ng-repeat="part in stage.lfoEngines">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-										<li class="boosters" ng-repeat="part in stage.boosters">{{part.name}}<span class="multiplier" ng-if="part.count > 1"> x{{part.count}}</span></li>
-									</ol>
-								</td>
-								<td class="stageMultiplier"><span ng-if="stage.multiplier > 1">x{{stage.multiplier}}</span></td>
-								<td class="cost">{{stage.costStage}} / {{stage.costTotal}}</td>
-								<td class="mass">{{stage.massStage.toFixed(3)}} / {{stage.massTotal.toFixed(3)}}</td>
-								<td class="deltaV">{{Math.round(stage.deltaVStage)}} / {{Math.round(stage.deltaVTotal)}}</td>
-								<td class="twr">{{stage.twr.toFixed(2)}}</td>
-								<td class="time">{{stage.timeStage.toFixed(1)}} / {{stage.timeTotal.toFixed(1)}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</details>
-			</div>
-			
+		</div>
+
+		<div id="save-chunk">
+			<h1>asdfasdfafasfd</h1>
 		</div>
 		
 		<div class="page-footer">
