@@ -206,7 +206,7 @@ var PACKS = [
 
 			{"name":"TD-50 Stack Separator","type":TYPES.DECOUPLER,"size":4,"cost":975,"mass":0.85,"ejection_force":250},
 			
-			{"name":"Heat Shield (1.25m)","type":TYPES.DECOUPLER,"size":1.5,"cost":500,"mass":0.8,"ejection_force":100},
+			{"name":"Heat Shield (1.875m)","type":TYPES.DECOUPLER,"size":1.5,"cost":500,"mass":0.8,"ejection_force":100},
 
 		]
 	},
