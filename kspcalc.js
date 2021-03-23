@@ -154,7 +154,7 @@ var PACKS = [
 		parts: [
 
 			// lf/o tanks
-			{"name":"FL-C1000 Fuel Tank","type":TYPES.LFO_TANK,"size":1.5,"cost":1400,"mass":0.75,"mass_fuel":6.78, "radial": true},
+			// {"name":"FL-C1000 Fuel Tank","type":TYPES.LFO_TANK,"size":1.5,"cost":1400,"mass":0.75,"mass_fuel":6.78, "radial": true},
 
 			{"name":"FL-TX1800 Fuel Tank","type":TYPES.LFO_TANK,"size":1.5,"cost":1800,"mass":1.125,"mass_fuel":9},
 			{"name":"FL-TX900 Fuel Tank","type":TYPES.LFO_TANK,"size":1.5,"cost":900,"mass":0.5625,"mass_fuel":4.5},
