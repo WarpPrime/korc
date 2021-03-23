@@ -864,9 +864,9 @@ function SettingsController($scope) {
 			<h3>LS-1</h3>
 			<details class="panel panel-default" ng-open="$first" open="">
 						<summary class="panel-heading">
-							<div class="attempt panel-heading-pill cc_cursor">Attempt #20</div>
-							<div class="stages panel-heading-pill nav-pills  cc_cursor">Stages: 2</div>
-							<div class="partCount panel-heading-pill nav-pills  strong cc_cursor" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
+							<div class="attempt panel-heading-pill ">Attempt #20</div>
+							<div class="stages panel-heading-pill nav-pills  ">Stages: 2</div>
+							<div class="partCount panel-heading-pill nav-pills  strong " ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
 							<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
 							<div class="mass panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="">(6.13%)</abbr></div>
 							<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 5313</div>
@@ -878,7 +878,7 @@ function SettingsController($scope) {
 									<th class="stage">Stage</th>
 									<th class="parts">Part</th>
 									<th class="stageMultiplier">x</th>
-									<th class="cost cc_cursor">Cost</th>
+									<th class="cost ">Cost</th>
 									<th class="mass">Mass (<math><mi>t</mi></math>)</th>
 									<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
 									<th class="twr">TWR</th>
@@ -949,9 +949,9 @@ function SettingsController($scope) {
 									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span ng-if="stage.multiplier > 1" class="ng-scope ">x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
 									<td class="cost ">158500 / 211100</td>
 									<td class="mass ">516.050 / 652.410</td>
-									<td class="deltaV  cc_cursor">3140 / 3140</td>
-									<td class="twr  cc_cursor">1.76</td>
-									<td class="time  cc_cursor">111.2 / 111.2</td>
+									<td class="deltaV  ">3140 / 3140</td>
+									<td class="twr  ">1.76</td>
+									<td class="time  ">111.2 / 111.2</td>
 								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' -->
 							</tbody>
 						</table>
