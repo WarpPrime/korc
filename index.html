@@ -862,7 +862,7 @@ function SettingsController($scope) {
 			<h1>Saved Rockets</h1>
 			
 			<h3>LS-1</h3>
-			<details class="panel panel-default ng-scope" ng-repeat="staging in bestStagings" ng-open="$first" open>
+			<details class="panel panel-default ng-scope" ng-repeat="staging in bestStagings" ng-open="$first" open="">
 						<summary class="panel-heading">
 							<div class="attempt panel-heading-pill ng-binding cc_cursor">Attempt #20</div>
 							<div class="stages panel-heading-pill nav-pills ng-binding cc_cursor">Stages: 2</div>
@@ -885,7 +885,7 @@ function SettingsController($scope) {
 									<th class="time">Time (<math><mi>s</mi></math>)</th>
 								</tr>
 							</thead>
-							<tbody>
+    							<tbody>
 								<!-- ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="ng-scope">
 									<td class="stage">
 										<div class="stageNumber ng-binding">0</div>
