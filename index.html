@@ -862,15 +862,15 @@ function SettingsController($scope) {
 			<h1>Saved Rockets</h1>
 			
 			<h3>LS-1</h3>
-			<details class="panel panel-default ng-scope" ng-repeat="staging in bestStagings" ng-open="$first" open="">
+			<details class="panel panel-default" ng-open="$first" open="">
 						<summary class="panel-heading">
-							<div class="attempt panel-heading-pill ng-binding cc_cursor">Attempt #20</div>
-							<div class="stages panel-heading-pill nav-pills ng-binding cc_cursor">Stages: 2</div>
-							<div class="partCount panel-heading-pill nav-pills ng-binding strong cc_cursor" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
-							<div class="cost panel-heading-pill nav-pills ng-binding" ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
-							<div class="mass panel-heading-pill nav-pills ng-binding" ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="ng-binding">(6.13%)</abbr></div>
-							<div class="deltaV panel-heading-pill nav-pills ng-binding">Delta-V: 5313</div>
-							<div class="time panel-heading-pill nav-pills ng-binding">Time: 166.9</div>
+							<div class="attempt panel-heading-pill cc_cursor">Attempt #20</div>
+							<div class="stages panel-heading-pill nav-pills  cc_cursor">Stages: 2</div>
+							<div class="partCount panel-heading-pill nav-pills  strong cc_cursor" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
+							<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
+							<div class="mass panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="">(6.13%)</abbr></div>
+							<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 5313</div>
+							<div class="time panel-heading-pill nav-pills ">Time: 166.9</div>
 						</summary>
 						<table class="panel-table table">
 							<thead>
@@ -888,13 +888,13 @@ function SettingsController($scope) {
     							<tbody>
 								<!-- ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="ng-scope">
 									<td class="stage">
-										<div class="stageNumber ng-binding">0</div>
+										<div class="stageNumber ">0</div>
 										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
 											<!-- ngRepeat: part in stage.decouplers -->
-											<!-- ngIf: stage.payload > 0 --><li class="payload ng-scope ng-binding" ng-if="stage.payload > 0">Payload: 40t</li><!-- end ngIf: stage.payload > 0 -->
+											<!-- ngIf: stage.payload > 0 --><li class="payload ng-scope " ng-if="stage.payload > 0">Payload: 40t</li><!-- end ngIf: stage.payload > 0 -->
 											<!-- ngRepeat: part in stage.others -->
 											<!-- ngRepeat: part in stage.lfoTanks -->
 											<!-- ngRepeat: part in stage.branches -->
@@ -903,55 +903,55 @@ function SettingsController($scope) {
 										</ol>
 									</td>
 									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --></td>
-									<td class="cost ng-binding">0 / 0</td>
-									<td class="mass ng-binding">40.000 / 40.000</td>
-									<td class="deltaV ng-binding">0 / 5313</td>
-									<td class="twr ng-binding">0.00</td>
-									<td class="time ng-binding">0.0 / 166.9</td>
+									<td class="cost ">0 / 0</td>
+									<td class="mass ">40.000 / 40.000</td>
+									<td class="deltaV ">0 / 5313</td>
+									<td class="twr ">0.00</td>
+									<td class="time ">0.0 / 166.9</td>
 								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="ng-scope">
 									<td class="stage">
-										<div class="stageNumber ng-binding">1</div>
+										<div class="stageNumber ">1</div>
 										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
-											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers ng-scope ng-binding" ng-repeat="part in stage.decouplers">TD-37 Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
+											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers ng-scope " ng-repeat="part in stage.decouplers">TD-37 Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
 											<!-- ngIf: stage.payload > 0 -->
 											<!-- ngRepeat: part in stage.others -->
-											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks ng-scope ng-binding" ng-repeat="part in stage.lfoTanks">Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
+											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks ng-scope " ng-repeat="part in stage.lfoTanks">Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
 											<!-- ngRepeat: part in stage.branches -->
-											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines ng-scope ng-binding" ng-repeat="part in stage.lfoEngines">S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
+											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines ng-scope " ng-repeat="part in stage.lfoEngines">S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
 											<!-- ngRepeat: part in stage.boosters -->
 										</ol>
 									</td>
 									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --></td>
-									<td class="cost ng-binding">52600 / 52600</td>
-									<td class="mass ng-binding">96.360 / 136.360</td>
-									<td class="deltaV ng-binding">2173 / 5313</td>
-									<td class="twr ng-binding">2.80</td>
-									<td class="time ng-binding">55.6 / 166.9</td>
+									<td class="cost ">52600 / 52600</td>
+									<td class="mass ">96.360 / 136.360</td>
+									<td class="deltaV ">2173 / 5313</td>
+									<td class="twr ">2.80</td>
+									<td class="time ">55.6 / 166.9</td>
 								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="ng-scope">
 									<td class="stage">
-										<div class="stageNumber ng-binding">2</div>
+										<div class="stageNumber ">2</div>
 										<!-- ngIf: stage.asparagus --><small ng-if="stage.asparagus" class="ng-scope">Asparagus</small><!-- end ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
-											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers ng-scope ng-binding" ng-repeat="part in stage.decouplers">TT-38K Radial Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
+											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers ng-scope " ng-repeat="part in stage.decouplers">TT-38K Radial Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
 											<!-- ngIf: stage.payload > 0 -->
-											<!-- ngRepeat: part in stage.others --><li class="others ng-scope ng-binding" ng-repeat="part in stage.others">FTX-2 External Fuel Duct<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.others -->
-											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks ng-scope ng-binding" ng-repeat="part in stage.lfoTanks">Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --><span class="multiplier ng-scope ng-binding" ng-if="part.count > 1"> x3</span><!-- end ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
+											<!-- ngRepeat: part in stage.others --><li class="others ng-scope " ng-repeat="part in stage.others">FTX-2 External Fuel Duct<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.others -->
+											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks ng-scope " ng-repeat="part in stage.lfoTanks">Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --><span class="multiplier ng-scope " ng-if="part.count > 1"> x3</span><!-- end ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
 											<!-- ngRepeat: part in stage.branches -->
-											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines ng-scope ng-binding" ng-repeat="part in stage.lfoEngines">S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
+											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines ng-scope " ng-repeat="part in stage.lfoEngines">S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
 											<!-- ngRepeat: part in stage.boosters -->
 										</ol>
 									</td>
-									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span ng-if="stage.multiplier > 1" class="ng-scope ng-binding">x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
-									<td class="cost ng-binding">158500 / 211100</td>
-									<td class="mass ng-binding">516.050 / 652.410</td>
-									<td class="deltaV ng-binding cc_cursor">3140 / 3140</td>
-									<td class="twr ng-binding cc_cursor">1.76</td>
-									<td class="time ng-binding cc_cursor">111.2 / 111.2</td>
+									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span ng-if="stage.multiplier > 1" class="ng-scope ">x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
+									<td class="cost ">158500 / 211100</td>
+									<td class="mass ">516.050 / 652.410</td>
+									<td class="deltaV  cc_cursor">3140 / 3140</td>
+									<td class="twr  cc_cursor">1.76</td>
+									<td class="time  cc_cursor">111.2 / 111.2</td>
 								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' -->
 							</tbody>
 						</table>
