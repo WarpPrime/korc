@@ -863,11 +863,10 @@ function SettingsController($scope) {
 			
 			<h3>LS-1</h3>
 			<details class="panel panel-default ng-scope" ng-repeat="staging in bestStagings" ng-open="$first" open="">
-						<h3>LS-1</h3>
 						<summary class="panel-heading">
-							<div class="attempt panel-heading-pill ng-binding cc_cursor"></div>
+							<div class="attempt panel-heading-pill ng-binding cc_cursor">Attempt #20</div>
 							<div class="stages panel-heading-pill nav-pills ng-binding cc_cursor">Stages: 2</div>
-							<div class="partCount panel-heading-pill nav-pills ng-binding cc_cursor" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
+							<div class="partCount panel-heading-pill nav-pills ng-binding strong cc_cursor" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
 							<div class="cost panel-heading-pill nav-pills ng-binding" ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
 							<div class="mass panel-heading-pill nav-pills ng-binding" ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="ng-binding">(6.13%)</abbr></div>
 							<div class="deltaV panel-heading-pill nav-pills ng-binding">Delta-V: 5313</div>
