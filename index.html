@@ -863,193 +863,271 @@ function SettingsController($scope) {
 			
 			<h3>LS-1</h3>
 			<details class="panel panel-default" ng-open="$first" open="">
-						<summary class="panel-heading">
-							<div class="attempt panel-heading-pill ">LS-1</div>
-							<div class="stages panel-heading-pill nav-pills  ">Stages: 2</div>
-							<div class="partCount panel-heading-pill nav-pills  strong " ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
-							<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
-							<div class="mass panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="">(6.13%)</abbr></div>
-							<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 5313</div>
-							<div class="time panel-heading-pill nav-pills ">Time: 166.9</div>
-						</summary>
-						<table class="panel-table table">
-							<thead>
-								<tr>
-									<th class="stage">Stage</th>
-									<th class="parts">Part</th>
-									<th class="stageMultiplier">x</th>
-									<th class="cost">Cost</th>
-									<th class="mass">Mass (<math><mi>t</mi></math>)</th>
-									<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
-									<th class="twr">TWR</th>
-									<th class="time">Time (<math><mi>s</mi></math>)</th>
-								</tr>
-							</thead>
-    							<tbody>
-								<tr>
-									<td class="stage">
-										<div class="stageNumber">0</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="payload">Payload: 40t</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">0 / 0</td>
-									<td class="mass ">40.000 / 40.000</td>
-									<td class="deltaV ">0 / 5313</td>
-									<td class="twr ">0.00</td>
-									<td class="time ">0.0 / 166.9</td>
-								</tr><tr >
-									<td class="stage">
-										<div class="stageNumber">1</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TD-37 Decoupler</li>
-											<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li>
-											<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">52600 / 52600</td>
-									<td class="mass ">96.360 / 136.360</td>
-									<td class="deltaV ">2173 / 5313</td>
-									<td class="twr ">2.80</td>
-									<td class="time ">55.6 / 166.9</td>
-								</tr><tr>
-									<td class="stage">
-										<div class="stageNumber ">2</div>
-										<small ng-if="stage.asparagus" class="">Asparagus</small>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TT-38K Radial Decoupler</li>
-											<li class="others  ">FTX-2 External Fuel Duct</li>
-											<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<span class="multiplier"> x3</span></li>
-											<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">158500 / 211100</td>
-									<td class="mass ">516.050 / 652.410</td>
-									<td class="deltaV  ">3140 / 3140</td>
-									<td class="twr  ">1.76</td>
-									<td class="time  ">111.2 / 111.2</td>
-								</tr>
-							</tbody>
-						</table>
-					</details>
+				<summary class="panel-heading">
+					<div class="attempt panel-heading-pill ">LS-1</div>
+					<div class="stages panel-heading-pill nav-pills  ">Stages: 2</div>
+					<div class="partCount panel-heading-pill nav-pills  strong " ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 15</div>
+					<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 211100</div>
+					<div class="mass panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'mass'}">Mass: 652.410 <abbr title="Payload Fraction" class="">(6.13%)</abbr></div>
+					<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 5313</div>
+					<div class="time panel-heading-pill nav-pills ">Time: 166.9</div>
+				</summary>
+				<table class="panel-table table">
+					<thead>
+						<tr>
+							<th class="stage">Stage</th>
+							<th class="parts">Part</th>
+							<th class="stageMultiplier">x</th>
+							<th class="cost">Cost</th>
+							<th class="mass">Mass (<math><mi>t</mi></math>)</th>
+							<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
+							<th class="twr">TWR</th>
+							<th class="time">Time (<math><mi>s</mi></math>)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="stage">
+								<div class="stageNumber">0</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="payload">Payload: 40t</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">0 / 0</td>
+							<td class="mass ">40.000 / 40.000</td>
+							<td class="deltaV ">0 / 5313</td>
+							<td class="twr ">0.00</td>
+							<td class="time ">0.0 / 166.9</td>
+						</tr><tr >
+							<td class="stage">
+								<div class="stageNumber">1</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TD-37 Decoupler</li>
+									<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li>
+									<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">52600 / 52600</td>
+							<td class="mass ">96.360 / 136.360</td>
+							<td class="deltaV ">2173 / 5313</td>
+							<td class="twr ">2.80</td>
+							<td class="time ">55.6 / 166.9</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber ">2</div>
+								<small ng-if="stage.asparagus" class="">Asparagus</small>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TT-38K Radial Decoupler</li>
+									<li class="others  ">FTX-2 External Fuel Duct</li>
+									<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<span class="multiplier"> x3</span></li>
+									<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">158500 / 211100</td>
+							<td class="mass ">516.050 / 652.410</td>
+							<td class="deltaV  ">3140 / 3140</td>
+							<td class="twr  ">1.76</td>
+							<td class="time  ">111.2 / 111.2</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
 			
 			<h3>LS-2</h3>
 			<details class="panel panel-default " ng-open="$first" open="">
-						<summary class="panel-heading">
-							<div class="attempt panel-heading-pill ">LS-2</div>
-							<div class="stages panel-heading-pill nav-pills ">Stages: 4</div>
-							<div class="partCount panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 8</div>
-							<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 9150</div>
-							<div class="mass panel-heading-pill nav-pills  strong" ng-class="{strong: staging.optimization == 'mass'}">Mass: 71.470 <abbr title="Payload Fraction" class="">(7.00%)</abbr></div>
-							<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 3573</div>
-							<div class="time panel-heading-pill nav-pills ">Time: 163.5</div>
-						</summary>
-						<table class="panel-table table">
-							<thead>
-								<tr>
-									<th class="stage">Stage</th>
-									<th class="parts">Part</th>
-									<th class="stageMultiplier">x</th>
-									<th class="cost">Cost</th>
-									<th class="mass">Mass (<math><mi>t</mi></math>)</th>
-									<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
-									<th class="twr">TWR</th>
-									<th class="time">Time (<math><mi>s</mi></math>)</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="stage">
-										<div class="stageNumber ">0</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="payload  ">Payload: 5t</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">0 / 0</td>
-									<td class="mass ">5.000 / 5.000</td>
-									<td class="deltaV ">0 / 3573</td>
-									<td class="twr ">0.00</td>
-									<td class="time ">0.0 / 163.5</td>
-								</tr><tr>
-									<td class="stage">
-										<div class="stageNumber ">1</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TD-12 Decoupler</li>
-											<li class="boosters  " >RT-10 "Hammer" Solid Fuel Booster</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">800 / 800</td>
-									<td class="mass ">3.603 / 8.602</td>
-									<td class="deltaV ">660 / 3573</td>
-									<td class="twr ">2.35</td>
-									<td class="time ">23.7 / 163.5</td>
-								</tr><tr>
-									<td class="stage">
-										<div class="stageNumber ">2</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TD-12 Decoupler</li>
-											<li class="boosters  " >RT-10 "Hammer" Solid Fuel Booster</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">800 / 1600</td>
-									<td class="mass ">3.603 / 12.205</td>
-									<td class="deltaV ">437 / 2912</td>
-									<td class="twr ">1.65</td>
-									<td class="time ">23.7 / 139.8</td>
-								</tr><tr>
-									<td class="stage">
-										<div class="stageNumber ">3</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TD-12 Decoupler</li>
-											<<li class="boosters  " >BACC "Thumper" Solid Fuel Booster</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">1250 / 2850</td>
-									<td class="mass ">7.690 / 19.895</td>
-									<td class="deltaV ">635 / 2475</td>
-									<td class="twr ">1.28</td>
-									<td class="time ">42.2 / 116.1</td>
-								</tr><tr>
-									<td class="stage">
-										<div class="stageNumber ">4</div>
-									</td>
-									<td class="parts partList">
-										<ol>
-											<li class="decouplers  " >TD-18 Decoupler</li>
-											<li class="boosters  " >THK "Pollux" Solid Fuel Booster</li>
-										</ol>
-									</td>
-									<td class="stageMultiplier"></td>
-									<td class="cost ">6300 / 9150</td>
-									<td class="mass ">51.575 / 71.470</td>
-									<td class="deltaV ">1841 / 1841</td>
-									<td class="twr ">1.65</td>
-									<td class="time ">73.9 / 73.9</td>
-								</tr>
-							</tbody>
-						</table>
-					</details>
+				<summary class="panel-heading">
+					<div class="attempt panel-heading-pill ">LS-2</div>
+					<div class="stages panel-heading-pill nav-pills ">Stages: 4</div>
+					<div class="partCount panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 8</div>
+					<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 9150</div>
+					<div class="mass panel-heading-pill nav-pills  strong" ng-class="{strong: staging.optimization == 'mass'}">Mass: 71.470 <abbr title="Payload Fraction" class="">(7.00%)</abbr></div>
+					<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 3573</div>
+					<div class="time panel-heading-pill nav-pills ">Time: 163.5</div>
+				</summary>
+				<table class="panel-table table">
+					<thead>
+						<tr>
+							<th class="stage">Stage</th>
+							<th class="parts">Part</th>
+							<th class="stageMultiplier">x</th>
+							<th class="cost">Cost</th>
+							<th class="mass">Mass (<math><mi>t</mi></math>)</th>
+							<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
+							<th class="twr">TWR</th>
+							<th class="time">Time (<math><mi>s</mi></math>)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="stage">
+								<div class="stageNumber ">0</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="payload  ">Payload: 5t</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">0 / 0</td>
+							<td class="mass ">5.000 / 5.000</td>
+							<td class="deltaV ">0 / 3573</td>
+							<td class="twr ">0.00</td>
+							<td class="time ">0.0 / 163.5</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber ">1</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TD-12 Decoupler</li>
+									<li class="boosters  " >RT-10 "Hammer" Solid Fuel Booster</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">800 / 800</td>
+							<td class="mass ">3.603 / 8.602</td>
+							<td class="deltaV ">660 / 3573</td>
+							<td class="twr ">2.35</td>
+							<td class="time ">23.7 / 163.5</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber ">2</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TD-12 Decoupler</li>
+									<li class="boosters  " >RT-10 "Hammer" Solid Fuel Booster</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">800 / 1600</td>
+							<td class="mass ">3.603 / 12.205</td>
+							<td class="deltaV ">437 / 2912</td>
+							<td class="twr ">1.65</td>
+							<td class="time ">23.7 / 139.8</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber ">3</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TD-12 Decoupler</li>
+									<<li class="boosters  " >BACC "Thumper" Solid Fuel Booster</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">1250 / 2850</td>
+							<td class="mass ">7.690 / 19.895</td>
+							<td class="deltaV ">635 / 2475</td>
+							<td class="twr ">1.28</td>
+							<td class="time ">42.2 / 116.1</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber ">4</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers  " >TD-18 Decoupler</li>
+									<li class="boosters  " >THK "Pollux" Solid Fuel Booster</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost ">6300 / 9150</td>
+							<td class="mass ">51.575 / 71.470</td>
+							<td class="deltaV ">1841 / 1841</td>
+							<td class="twr ">1.65</td>
+							<td class="time ">73.9 / 73.9</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+			<h3>LS-3</h3>
+			<details class="panel panel-default " ng-open="$first" open="">
+				<summary class="panel-heading">
+					<div class="attempt panel-heading-pill ">LS-3</div>
+					<div class="stages panel-heading-pill nav-pills ">Stages: 2</div>
+					<div class="partCount panel-heading-pill nav-pills  strong" ng-class="{strong: staging.optimization == 'partCount'}">Part Count: 12</div>
+					<div class="cost panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'cost'}">Cost: 103700</div>
+					<div class="mass panel-heading-pill nav-pills " ng-class="{strong: staging.optimization == 'mass'}">Mass: 557.175 <abbr title="Payload Fraction" class="">(17.9%)</abbr></div>
+					<div class="deltaV panel-heading-pill nav-pills ">Delta-V: 3537</div>
+					<div class="time panel-heading-pill nav-pills ">Time: 190.9</div>
+				</summary>
+				<table class="panel-table table">
+					<thead>
+						<tr>
+							<th class="stage">Stage</th>
+							<th class="parts">Part</th>
+							<th class="stageMultiplier">x</th>
+							<th class="cost">Cost</th>
+							<th class="mass">Mass (<math><mi>t</mi></math>)</th>
+							<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
+							<th class="twr">TWR</th>
+							<th class="time">Time (<math><mi>s</mi></math>)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr>
+							<td class="stage">
+								<div class="stageNumber ">0</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="payload">Payload: 100t</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost">0 / 0</td>
+							<td class="mass">100.000 / 100.000</td>
+							<td class="deltaV">0 / 3537</td>
+							<td class="twr >0.00</td>
+							<td class="time">0.0 / 190.9</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber">1</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers" >EP-37 Engine Plate</li>
+									<li class="lfoTanks">Kerbodyne S3-14400 Tank<span class="multiplier  " > x2</span></li>
+									<li class="lfoEngines">S3 KS-25x4 "Mammoth" Liquid Fuel Engine</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"></td>
+							<td class="cost">65300 / 65300</td>
+							<td class="mass">177.075 / 277.075</td>
+							<td class="deltaV">2266 / 3537</td>
+							<td class="twr">1.47</td>
+							<td class="time">111.2 / 190.9</td>
+						</tr><tr>
+							<td class="stage">
+								<div class="stageNumber">2</div>
+							</td>
+							<td class="parts partList">
+								<ol>
+									<li class="decouplers">TT-38K Radial Decoupler</li>
+									<li class="boosters">S2-17 "Thoroughbred" Solid Fuel Booster</li>
+								</ol>
+							</td>
+							<td class="stageMultiplier"><span>x4</span></td>
+							<td class="cost ">38400 / 103700</td>
+							<td class="mass ">280.100 / 557.175</td>
+							<td class="deltaV ">1271 / 1271</td>
+							<td class="twr ">1.24</td>
+							<td class="time ">79.6 / 79.6</td>
+						</tr>
+					</tbody>
+				</table>
+			</details>
+	
 		</div>
 		
 		<div class="page-footer">
