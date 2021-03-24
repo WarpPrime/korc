@@ -886,73 +886,58 @@ function SettingsController($scope) {
 								</tr>
 							</thead>
     							<tbody>
-								<!-- ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="">
+								<tr>
 									<td class="stage">
 										<div class="stageNumber">0</div>
-										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
-											<!-- ngRepeat: part in stage.decouplers -->
-											<!-- ngIf: stage.payload > 0 --><li class="payload">Payload: 40t</li><!-- end ngIf: stage.payload > 0 -->
-											<!-- ngRepeat: part in stage.others -->
-											<!-- ngRepeat: part in stage.lfoTanks -->
-											<!-- ngRepeat: part in stage.branches -->
-											<!-- ngRepeat: part in stage.lfoEngines -->
-											<!-- ngRepeat: part in stage.boosters -->
+											<li class="payload">Payload: 40t</li>
 										</ol>
 									</td>
-									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --></td>
+									<td class="stageMultiplier"></td>
 									<td class="cost ">0 / 0</td>
 									<td class="mass ">40.000 / 40.000</td>
 									<td class="deltaV ">0 / 5313</td>
 									<td class="twr ">0.00</td>
 									<td class="time ">0.0 / 166.9</td>
-								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="">
+								</tr><tr >
 									<td class="stage">
 										<div class="stageNumber">1</div>
-										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
-											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers  " >TD-37 Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
-											<!-- ngIf: stage.payload > 0 -->
-											<!-- ngRepeat: part in stage.others -->
-											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks  " >Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
-											<!-- ngRepeat: part in stage.branches -->
-											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
-											<!-- ngRepeat: part in stage.boosters -->
+											<li class="decouplers  " >TD-37 Decoupler</li>
+											<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --></li>
+											<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li>
 										</ol>
 									</td>
-									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --></td>
+									<td class="stageMultiplier"></td>
 									<td class="cost ">52600 / 52600</td>
 									<td class="mass ">96.360 / 136.360</td>
 									<td class="deltaV ">2173 / 5313</td>
 									<td class="twr ">2.80</td>
 									<td class="time ">55.6 / 166.9</td>
-								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="">
+								</tr><tr>
 									<td class="stage">
 										<div class="stageNumber ">2</div>
-										<!-- ngIf: stage.asparagus --><small ng-if="stage.asparagus" class="">Asparagus</small><!-- end ngIf: stage.asparagus -->
+										<small ng-if="stage.asparagus" class="">Asparagus</small>
 									</td>
 									<td class="parts partList">
 										<ol>
-											<!-- ngRepeat: part in stage.decouplers --><li class="decouplers  " >TT-38K Radial Decoupler<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.decouplers -->
-											<!-- ngIf: stage.payload > 0 -->
-											<!-- ngRepeat: part in stage.others --><li class="others  " ng-repeat="part in stage.others">FTX-2 External Fuel Duct<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.others -->
-											<!-- ngRepeat: part in stage.lfoTanks --><li class="lfoTanks  " >Kerbodyne S3-14400 Tank<!-- ngIf: part.count > 1 --><span class="multiplier  " ng-if="part.count > 1"> x3</span><!-- end ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoTanks -->
-											<!-- ngRepeat: part in stage.branches -->
-											<!-- ngRepeat: part in stage.lfoEngines --><li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine<!-- ngIf: part.count > 1 --></li><!-- end ngRepeat: part in stage.lfoEngines -->
-											<!-- ngRepeat: part in stage.boosters -->
+											<li class="decouplers  " >TT-38K Radial Decoupler</li>
+											<li class="others  ">FTX-2 External Fuel Duct</li>
+											<li class="lfoTanks  " >Kerbodyne S3-14400 Tank<span class="multiplier"> x3</span></li>
+											<li class="lfoEngines  " >S3 KS-25x4 "Mammoth" Liquid Fuel Engine</li>
 										</ol>
 									</td>
-									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span>x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
+									<td class="stageMultiplier"></td>
 									<td class="cost ">158500 / 211100</td>
 									<td class="mass ">516.050 / 652.410</td>
 									<td class="deltaV  ">3140 / 3140</td>
 									<td class="twr  ">1.76</td>
 									<td class="time  ">111.2 / 111.2</td>
-								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' -->
+								</tr>
 							</tbody>
 						</table>
 					</details>
