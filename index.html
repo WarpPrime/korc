@@ -878,7 +878,7 @@ function SettingsController($scope) {
 									<th class="stage">Stage</th>
 									<th class="parts">Part</th>
 									<th class="stageMultiplier">x</th>
-									<th class="cost ">Cost</th>
+									<th class="cost">Cost</th>
 									<th class="mass">Mass (<math><mi>t</mi></math>)</th>
 									<th class="deltaV">Delta-V (<math><mi>m</mi><mo>/</mo><mi>s</mi></math>)</th>
 									<th class="twr">TWR</th>
@@ -888,13 +888,13 @@ function SettingsController($scope) {
     							<tbody>
 								<!-- ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="">
 									<td class="stage">
-										<div class="stageNumber ">0</div>
+										<div class="stageNumber">0</div>
 										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
 										<ol>
 											<!-- ngRepeat: part in stage.decouplers -->
-											<!-- ngIf: stage.payload > 0 --><li class="payload  " ng-if="stage.payload > 0">Payload: 40t</li><!-- end ngIf: stage.payload > 0 -->
+											<!-- ngIf: stage.payload > 0 --><li class="payload">Payload: 40t</li><!-- end ngIf: stage.payload > 0 -->
 											<!-- ngRepeat: part in stage.others -->
 											<!-- ngRepeat: part in stage.lfoTanks -->
 											<!-- ngRepeat: part in stage.branches -->
@@ -910,7 +910,7 @@ function SettingsController($scope) {
 									<td class="time ">0.0 / 166.9</td>
 								</tr><!-- end ngRepeat: stage in staging.stages | orderBy:'-stage' --><tr ng-repeat="stage in staging.stages | orderBy:'-stage'" class="">
 									<td class="stage">
-										<div class="stageNumber ">1</div>
+										<div class="stageNumber">1</div>
 										<!-- ngIf: stage.asparagus -->
 									</td>
 									<td class="parts partList">
@@ -946,7 +946,7 @@ function SettingsController($scope) {
 											<!-- ngRepeat: part in stage.boosters -->
 										</ol>
 									</td>
-									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span ng-if="stage.multiplier > 1" class=" ">x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
+									<td class="stageMultiplier"><!-- ngIf: stage.multiplier > 1 --><span>x2</span><!-- end ngIf: stage.multiplier > 1 --></td>
 									<td class="cost ">158500 / 211100</td>
 									<td class="mass ">516.050 / 652.410</td>
 									<td class="deltaV  ">3140 / 3140</td>
