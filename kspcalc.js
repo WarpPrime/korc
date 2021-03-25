@@ -574,7 +574,7 @@ function fixArgs(args) {
 	args.cluster = (args.maxStacks > 1 || args.stagesMaxStacks > 1) && !!args.cluster;
 	args.asparagus = !!(args.next.lfoTanks || 0).length && !!args.asparagus;
 	args.parallel = /*!!args.parallel || */args.asparagus;  //FIXME: Parallel disabled until supported without asparagus
-	args.firstSRB = !!args.firstSRB;
+	args.firstSRB = !!(args.next.boosters || 0).length && !!args.firstSRB;
 	args.decoupling = (args.decoupling !== false);
 	args.tankDiametersEqual = !!args.tankDiametersEqual;
 	args.tankDiametersEqualEngineDiameter = args.tankDiametersEqual && !!args.tankDiametersEqualEngineDiameter;
@@ -628,7 +628,7 @@ function getMetric(stage, args) {
 
 function findOptimalStage(args) {
 	fixArgs(args);
-	console.log(firstSRB); // DEBUGGGG PLEASE DELETE LATER
+	console.log(args.firstSRB); // DEBUGGGG PLEASE DELETE LATER
 	
 	var bestStage = null;
 	var stage = null;
@@ -806,7 +806,7 @@ function findOptimalStage(args) {
 											optimization : stage.optimization,
 											metric : stage.metric,
 											deltaV : dV,
-											firstSRB : stage.firstSRB,
+											firstSRB : stage.firstSRB
 											
 										};
 									}
