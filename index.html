@@ -242,6 +242,7 @@ function SettingsController($scope) {
 	$scope.tankDiametersGreaterThenEngineDiameter = true;
 	$scope.gimbal = true;
 	$scope.throttleable = true;
+	$scope.firstSRB = false;
 	$scope.packTree = _.map(PACKS, function (pack) {
 		var result = Object.create(pack);
 		result.parts = _.map(_.groupBy(pack.parts, "type"), function (parts, partId) {
@@ -395,6 +396,7 @@ function SettingsController($scope) {
 			cluster : $scope.cluster,
 			parallel : false,
 			asparagus : false,
+			firstSRB : false,
 			decoupling : $scope.payloadDecoupler,
 			tankDiametersEqual : $scope.tankDiametersEqual,
 			tankDiametersEqualEngineDiameter : $scope.tankDiametersEqual && $scope.tankDiametersEqualEngineDiameter,
@@ -405,6 +407,7 @@ function SettingsController($scope) {
 			stagesMaxStacks : $scope.maxStacks,
 			stagesParallel : $scope.parallel || $scope.asparagus,
 			stagesAsparagus : $scope.asparagus,
+			stagesfirstSRB : $scope.firstSRB,
 			stagesThrottleable : undefined,
 			parts : sortParts($scope.getEnabledParts(), $scope.optimization)
 		};
@@ -686,6 +689,12 @@ function SettingsController($scope) {
 											<input type="checkbox" name="asparagus" id="settingsAsparagus" ng-model="asparagus" ng-disabled="maxStacks <= 1" ng-change="onAsparagusChange()"/>
 											Asparagus fuel routing
 											<a href="http://wiki.kerbalspaceprogram.com/wiki/Asparagus_staging" target="_blank" class="help">?</a>
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="firstSRB" id="settingsFirstSRB" ng-model="firstSRB"/>
+											First stage must be a booster
 										</label>
 									</div>
 								</div>
