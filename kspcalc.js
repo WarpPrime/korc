@@ -574,6 +574,7 @@ function fixArgs(args) {
 	args.cluster = (args.maxStacks > 1 || args.stagesMaxStacks > 1) && !!args.cluster;
 	args.asparagus = !!(args.next.lfoTanks || 0).length && !!args.asparagus;
 	args.parallel = /*!!args.parallel || */args.asparagus;  //FIXME: Parallel disabled until supported without asparagus
+	args.firstSRB = args.firstSRB;
 	args.decoupling = (args.decoupling !== false);
 	args.tankDiametersEqual = !!args.tankDiametersEqual;
 	args.tankDiametersEqualEngineDiameter = args.tankDiametersEqual && !!args.tankDiametersEqualEngineDiameter;
@@ -583,6 +584,7 @@ function fixArgs(args) {
 	args.maxStages = args.maxStages || 1;
 	args.stagesMaxStacks = args.stagesMaxStacks || 1;
 	args.stagesAsparagus = !!args.stagesAsparagus;
+	args.stagesfirstSRB = !!args.stagesfirstSRB;
 	args.stagesParallel = !!args.stagesParallel || args.stagesAsparagus;
 	args.stagesThrottleable = args.stagesThrottleable; 
 	args.parts = args.parts || {};
@@ -626,6 +628,7 @@ function getMetric(stage, args) {
 
 function findOptimalStage(args) {
 	fixArgs(args);
+	console.log(firstSRB); // DEBUGGGG PLEASE DELETE LATER
 	
 	var bestStage = null;
 	var stage = null;
@@ -651,7 +654,8 @@ function findOptimalStage(args) {
 		asparagus : args.asparagus,
 		optimization : args.optimization,
 		metric : Infinity,
-		deltaV : 0
+		deltaV : 0,
+		firstSRB : args.firstSRB,
 	};
 	
 	bestStackDecoupler = args.parts.stackDecouplers[0];
@@ -801,7 +805,9 @@ function findOptimalStage(args) {
 											asparagus : stage.asparagus,
 											optimization : stage.optimization,
 											metric : stage.metric,
-											deltaV : dV
+											deltaV : dV,
+											firstSRB : stage.firstSRB,
+											
 										};
 									}
 									
@@ -838,7 +844,8 @@ function findOptimalStage(args) {
 		asparagus : false,  //boosters can't share fuel
 		optimization : args.optimization,
 		metric : Infinity,
-		deltaV : 0
+		deltaV : 0,
+		firstSRB : args.firstSRB,
 	};
 	
 	bestStackDecoupler = args.parts.stackDecouplers[0];
