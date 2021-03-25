@@ -847,6 +847,7 @@ function findOptimalStage(args) {
 		deltaV : 0,
 		firstSRB : args.firstSRB,
 	};
+	console.log(stage.next);
 	
 	bestStackDecoupler = args.parts.stackDecouplers[0];
 	bestRadialDecoupler = args.parts.radialDecouplers[0];
@@ -928,7 +929,8 @@ function findOptimalStage(args) {
 							asparagus : stage.asparagus,
 							optimization : stage.optimization,
 							metric : stage.metric,
-							deltaV : dV
+							deltaV : dV,
+							firstSRB : stage.firstSRB
 						};
 					}
 					
