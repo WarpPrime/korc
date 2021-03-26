@@ -628,7 +628,7 @@ function getMetric(stage, args) {
 
 function findOptimalStage(args) {
 	fixArgs(args);
-	console.log(args.firstSRB); // DEBUGGGG PLEASE DELETE LATER
+	// console.log(args.firstSRB); // DEBUGGGG PLEASE DELETE LATER
 	
 	var bestStage = null;
 	var stage = null;
@@ -847,7 +847,7 @@ function findOptimalStage(args) {
 		deltaV : 0,
 		firstSRB : args.firstSRB,
 	};
-	console.log(stage.next);
+	// console.log(stage.next);
 	
 	bestStackDecoupler = args.parts.stackDecouplers[0];
 	bestRadialDecoupler = args.parts.radialDecouplers[0];
